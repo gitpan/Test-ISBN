@@ -1,17 +1,11 @@
-# $Id: load.t,v 1.1 2002/09/03 07:07:21 comdog Exp $
+# $Id: load.t,v 1.2 2004/09/08 09:10:23 comdog Exp $
 BEGIN {
-	use File::Find::Rule;
-	@classes = map { my $x = $_;
-		$x =~ s|^blib/lib/||;
-		$x =~ s|/|::|g;
-		$x =~ s|\.pm$||;
-		$x;
-		} File::Find::Rule->file()->name( '*.pm' )->in( 'blib/lib' );
+	@classes = qw(Test::ISBN);
 	}
 
 use Test::More tests => scalar @classes;
-	
+
 foreach my $class ( @classes )
 	{
-	use_ok( $class );
+	print "bail out! $class did not compile\n" unless use_ok( $class );
 	}
