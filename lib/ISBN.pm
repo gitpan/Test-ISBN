@@ -1,4 +1,4 @@
-# $Id: ISBN.pm,v 1.5 2004/09/08 09:10:23 comdog Exp $
+# $Id: ISBN.pm,v 1.6 2005/03/08 23:08:23 comdog Exp $
 package Test::ISBN;
 use strict;
 
@@ -11,7 +11,7 @@ use Test::Builder;
 
 my $Test = Test::Builder->new();
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.5 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.6 $ =~ m/ (\d+) \. (\d+) /xg;
 @EXPORT  = qw(isbn_ok isbn_country_ok isbn_publisher_ok);
 
 =head1 NAME
@@ -66,8 +66,8 @@ sub isbn_country_ok
 
 	unless( $object->is_valid )
 		{
-		$Test->ok(0);
 		$Test->diag("ISBN [$isbn] is not valid"),
+		$Test->ok(0);
 		}
 	elsif( $object->country_code eq $country )
 		{
@@ -75,10 +75,10 @@ sub isbn_country_ok
 		}
 	else
 		{
-		$Test->ok(0);
 		$Test->diag("ISBN [$isbn] country code is wrong\n",
 			"\tExpected [$country]\n",
 			"\tGot [" . $object->country_code . "]\n" );
+		$Test->ok(0);
 		}
 
 	}
@@ -98,8 +98,8 @@ sub isbn_publisher_ok
 
 	unless( $object->is_valid )
 		{
-		$Test->ok(0);
 		$Test->diag("ISBN [$isbn] is not valid"),
+		$Test->ok(0);
 		}
 	elsif( $object->publisher_code eq $publisher )
 		{
@@ -107,10 +107,10 @@ sub isbn_publisher_ok
 		}
 	else
 		{
-		$Test->ok(0);
 		$Test->diag("ISBN [$isbn] publisher code is wrong\n",
 			"\tExpected [$publisher]\n",
 			"\tGot [" . $object->publisher_code . "]\n" );
+		$Test->ok(0);
 		}
 	}
 
@@ -132,7 +132,7 @@ brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT
 
-Copyright 2002-2004 brian d foy, All rights reserved.
+Copyright 2002-2005 brian d foy, All rights reserved.
 
 You can use this module under the same terms as
 Perl itself.
