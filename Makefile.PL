@@ -7,7 +7,7 @@ WriteMakefile
         (
         'NAME'      => 'Test::ISBN',
         'ABSTRACT'  => 'Check International Standard Book Numbers',
-        'VERSION'   => '0.5_02',
+        'VERSION'   => '0.5_03',
  		'PREREQ_PM' => {
  			'Test::Pod'             => 0,
  			'Test::Manifest'        => 0,
