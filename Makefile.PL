@@ -1,19 +1,22 @@
-# $Id: Makefile.PL,v 1.1 2002/09/03 07:07:21 comdog Exp $
+# $Id: Makefile.PL,v 1.3 2002/09/09 16:31:01 comdog Exp $
 use ExtUtils::MakeMaker;
 
-use Test::Manifest qw(get_t_files);
+my $tests = do {
+	local @ARGV = qw(t/test_manifest);
+	my $data = join " ", map {chomp; "t/$_" } <>;
+	};
+	
 
 WriteMakefile
         (
         'NAME'      => 'Test::ISBN',
         'ABSTRACT'  => 'Check International Standard Book Numbers',
-        'VERSION'   => '0.5_03',
+        'VERSION'   => '0.5_04',
  		'PREREQ_PM' => {
- 			'Test::Pod'             => 0,
- 			'Test::Manifest'        => 0,
- 			'Test::Builder'         => 0,
- 			'Test::More'            => 0,
- 			'Test::Builder::Tester' => 0,
+ 			Test::Pod             => 0.70,
+ 			Test::More            => 0,
+ 			Test::Builder::Tester => 0,
+ 			File::Find::Rule      => 0,
  			},
         'PM'        => 
         	{
@@ -21,6 +24,6 @@ WriteMakefile
           },
  
  		depend => { Makefile => 't/test_manifest' },
-        test   => { TESTS => scalar get_t_files() },
+        test   => { TESTS => $tests },
         );
 

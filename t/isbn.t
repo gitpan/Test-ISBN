@@ -1,4 +1,4 @@
-# $Id: isbn.t,v 1.1 2002/09/03 10:32:10 comdog Exp $
+# $Id: isbn.t,v 1.2 2002/09/09 16:27:48 comdog Exp $
 
 BEGIN
 	{
