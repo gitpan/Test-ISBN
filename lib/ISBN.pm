@@ -1,6 +1,9 @@
-# $Id: ISBN.pm,v 1.1 2002/09/03 07:07:21 comdog Exp $
+# $Id: ISBN.pm,v 1.2 2002/09/03 10:32:10 comdog Exp $
 package Test::ISBN;
 use strict;
+
+use base qw(Exporter);
+use vars qw(@EXPORT);
 
 use Business::ISBN;
 use Exporter;
@@ -8,16 +11,7 @@ use Test::Builder;
 
 my $Test = Test::Builder->new();
 
-sub import 
-	{
-    my $self = shift;
-    my $caller = caller;
-    no strict 'refs';
-    *{$caller.'::isbn_ok'}      = \&isbn_ok;
-
-    $Test->exported_to($caller);
-    $Test->plan(@_);
-	}
+@EXPORT = qw(isbn_ok);
 
 =head1 NAME
 
