@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.3 2002/09/09 16:31:01 comdog Exp $
+# $Id: Makefile.PL,v 1.5 2002/09/09 18:19:17 comdog Exp $
 use ExtUtils::MakeMaker;
 
 my $tests = do {
@@ -11,12 +11,13 @@ WriteMakefile
         (
         'NAME'      => 'Test::ISBN',
         'ABSTRACT'  => 'Check International Standard Book Numbers',
-        'VERSION'   => '0.5_04',
+        'VERSION'   => '0.5_06',
  		'PREREQ_PM' => {
  			Test::Pod             => 0.70,
  			Test::More            => 0,
  			Test::Builder::Tester => 0,
  			File::Find::Rule      => 0,
+ 			Business::ISBN        => 0,
  			},
         'PM'        => 
         	{
