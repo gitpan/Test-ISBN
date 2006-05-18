@@ -1,4 +1,4 @@
-# $Id: ISBN.pm,v 1.6 2005/03/08 23:08:23 comdog Exp $
+# $Id: ISBN.pm,v 1.7 2006/05/18 02:50:57 comdog Exp $
 package Test::ISBN;
 use strict;
 
@@ -11,7 +11,7 @@ use Test::Builder;
 
 my $Test = Test::Builder->new();
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.6 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.7 $ =~ m/ (\d+) \. (\d+) /xg;
 @EXPORT  = qw(isbn_ok isbn_country_ok isbn_publisher_ok);
 
 =head1 NAME
@@ -132,7 +132,7 @@ brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT
 
-Copyright 2002-2005 brian d foy, All rights reserved.
+Copyright 2002-2006 brian d foy, All rights reserved.
 
 You can use this module under the same terms as
 Perl itself.
