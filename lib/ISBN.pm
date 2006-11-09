@@ -1,4 +1,4 @@
-# $Id: ISBN.pm,v 1.7 2006/05/18 02:50:57 comdog Exp $
+# $Id: ISBN.pm,v 1.8 2006/11/09 12:52:46 comdog Exp $
 package Test::ISBN;
 use strict;
 
@@ -11,7 +11,7 @@ use Test::Builder;
 
 my $Test = Test::Builder->new();
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.7 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.8 $ =~ m/ (\d+) \. (\d+) /xg;
 @EXPORT  = qw(isbn_ok isbn_country_ok isbn_publisher_ok);
 
 =head1 NAME
@@ -33,10 +33,9 @@ Test::ISBN - Check International Standard Book Numbers
 
 =item isbn_ok( STRING )
 
-Ok is the STRING is a valid ISBN, in any format that
-Business::ISBN accepts.  This function only checks
-the checksum.  The publisher and country codes might
-be invalid even though the checksum is valid.
+Ok is the STRING is a valid ISBN, in any format that Business::ISBN
+accepts.  This function only checks the checksum.  The publisher and
+country codes might be invalid even though the checksum is valid.
 
 =cut
 
