@@ -1,4 +1,4 @@
-# $Id: ISBN.pm,v 1.8 2006/11/09 12:52:46 comdog Exp $
+# $Id: ISBN.pm,v 1.9 2007/01/10 04:50:39 comdog Exp $
 package Test::ISBN;
 use strict;
 
@@ -11,7 +11,7 @@ use Test::Builder;
 
 my $Test = Test::Builder->new();
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.8 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.9 $ =~ m/ (\d+) \. (\d+) /xg;
 @EXPORT  = qw(isbn_ok isbn_country_ok isbn_publisher_ok);
 
 =head1 NAME
@@ -129,13 +129,14 @@ members of the project can shepherd this module appropriately.
 
 brian d foy, C<< <bdfoy@cpan.org> >>
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2002-2006 brian d foy, All rights reserved.
+Copyright (c) 2002-2007 brian d foy.  All rights reserved.
 
-You can use this module under the same terms as
-Perl itself.
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =cut
+
 
 1;

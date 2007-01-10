@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.7 2006/11/09 12:51:26 comdog Exp $
+# $Id: Makefile.PL,v 1.8 2007/01/10 04:50:39 comdog Exp $
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest 1.14";
@@ -7,6 +7,7 @@ WriteMakefile
 	(
 	'NAME'           => 'Test::ISBN',
 	'ABSTRACT'       => 'Check International Standard Book Numbers',
+	'LICENSE'       => 'perl',
 	'VERSION_FROM'   => 'lib/ISBN.pm',
 	'PREREQ_PM'      => {
 		'Test::More'            => '0',
