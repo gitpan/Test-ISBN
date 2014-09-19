@@ -1,5 +1,3 @@
-# $Id: isbn.t 2347 2007-10-28 02:16:07Z comdog $
-
 BEGIN
 	{
 	@good_isbns = qw(

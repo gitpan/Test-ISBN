@@ -1,5 +1,3 @@
-$Id: README 1470 2004-09-08 09:10:23Z comdog $
-
 You can install this using in the usual Perl fashion
 
 	perl Makefile.PL
@@ -15,11 +13,11 @@ the file, you can read it with perldoc.
 If you want to read it before you install it, you can use
 perldoc directly on the module file.
 
-	perldoc  lib/ISBN.pm
+	perldoc  lib/Test/ISBN.pm
 	
-This module is also in CVS on SourceForge
+This module is also in GitHub
 
-	http://sourceforge.net/projects/brian-d-foy/
+	https://github.com/briandfoy/Test-ISBN
 
 
 Enjoy, 

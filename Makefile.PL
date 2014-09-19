@@ -1,23 +1,34 @@
-# $Id: Makefile.PL 2347 2007-10-28 02:16:07Z comdog $
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker 6.65;
 
-eval "use Test::Manifest 1.14";
+require 5.008;
 
-WriteMakefile
-	(
+eval "use Test::Manifest 1.21";
+
+WriteMakefile (
 	'NAME'          => 'Test::ISBN',
 	'ABSTRACT'      => 'Check International Standard Book Numbers',
-	'LICENSE'		=> 'perl',
-	'AUTHOR'		=> 'brian d foy <bdfoy@cpan.org>',
+	'LICENSE'       => 'perl',
+	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
 
-	'VERSION_FROM'   => 'lib/ISBN.pm',
+	'VERSION_FROM'   => 'lib/Test/ISBN.pm',
 	'PREREQ_PM'      => {
-		'Test::More'            => '0',
-		'Test::Builder::Tester' => '0',
 		'Business::ISBN'        => '2.0',
 		},
-	'PM'             => {
-		'lib/ISBN.pm'     => '$(INST_LIBDIR)/ISBN.pm',
+
+	'TEST_REQUIRES' => {
+		'Test::More'            => '0',
+		'Test::Builder::Tester' => '0',
+		},
+
+	'META_MERGE' => {
+		'meta-spec' => { version => 2 },
+			resources => {
+				repository => {
+					type => 'git',
+					url  => 'https://github.com/briandfoy/Test-ISBN.git',
+					web  => 'https://github.com/briandfoy/Test-ISBN',
+				},
+			},
 		},
 
 	clean            => { FILES => 'Test-ISBN-*' },

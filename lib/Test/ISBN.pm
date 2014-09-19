@@ -1,4 +1,3 @@
-# $Id: ISBN.pm 2347 2007-10-28 02:16:07Z comdog $
 package Test::ISBN;
 use strict;
 
@@ -11,7 +10,7 @@ use Test::Builder;
 
 my $Test = Test::Builder->new();
 
-$VERSION = 2.01;
+$VERSION = '2.02';
 @EXPORT  = qw(isbn_ok isbn_group_ok isbn_country_ok isbn_publisher_ok);
 
 =head1 NAME
@@ -33,19 +32,20 @@ This is the 2.x version of Test::ISBN and works with Business::ISBN 2.x.
 
 =over 4
 
-=item isbn_ok( STRING )
+=item isbn_ok( STRING | ISBN )
 
 Ok is the STRING is a valid ISBN, in any format that Business::ISBN
 accepts.  This function only checks the checksum.  The publisher and
 country codes might be invalid even though the checksum is valid.
 
+If the first argument is an ISBN object, it checks that object.
+
 =cut
 
-sub isbn_ok
-	{
+sub isbn_ok {
 	my $isbn = shift;
 	
-	my $object = Business::ISBN->new( $isbn );
+	my $object = _get_object( $isbn );
 	
 	my $ok   = ref $object && 
 		( $object->is_valid_checksum( $isbn ) eq Business::ISBN::GOOD_ISBN );
@@ -55,30 +55,28 @@ sub isbn_ok
 	$Test->diag( "The string [$isbn] is not a valid ISBN" ) unless $ok;
 	}
 
-=item isbn_group_ok( STRING, COUNTRY )
+=item isbn_group_ok( STRING | ISBN, COUNTRY )
 
-Ok is the STRING is a valid ISBN and its country
-code is the same as COUNTRY.
+Ok is the STRING is a valid ISBN and its country code is the same as
+COUNTRY. If the first argument is an ISBN object, it checks that
+object.
 
 =cut
 
-sub isbn_group_ok
-	{
+sub isbn_group_ok {
 	my $isbn    = shift;
 	my $country = shift;
-	my $object  = Business::ISBN->new($isbn);
 
-	unless( $object->is_valid )
-		{
+	my $object = _get_object( $isbn );
+
+	unless( $object->is_valid ) {
 		$Test->diag("ISBN [$isbn] is not valid"),
 		$Test->ok(0);
 		}
-	elsif( $object->group_code eq $country )
-		{
+	elsif( $object->group_code eq $country ) {
 		$Test->ok(1);
 		}
-	else
-		{
+	else {
 		$Test->diag("ISBN [$isbn] group code is wrong\n",
 			"\tExpected [$country]\n",
 			"\tGot [" . $object->group_code . "]\n" );
@@ -87,45 +85,47 @@ sub isbn_group_ok
 
 	}
 
-=item isbn_country_ok( STRING, COUNTRY )
+=item isbn_country_ok( STRING | ISBN, COUNTRY )
 
 Deprecated. Use isbn_group_ok. This is still exported, though.
 
 For now it warns and redirects to isbn_group_ok.
 
+If the first argument is an ISBN object, it checks that
+object.
+
 =cut
 
-sub isbn_country_ok
-	{
+sub isbn_country_ok {
 	$Test->diag( "isbn_country_ok is deprecated. Use isbn_group_ok" );
 	
 	&isbn_group_ok;
 	}
 	
-=item isbn_publisher_ok( STRING, PUBLISHER )
+=item isbn_publisher_ok( STRING | ISBN, PUBLISHER )
 
 Ok is the STRING is a valid ISBN and its publisher
 code is the same as PUBLISHER.
 
+If the first argument is an ISBN object, it checks that
+object.
+
 =cut
 
-sub isbn_publisher_ok
-	{
+sub isbn_publisher_ok {
 	my $isbn      = shift;
 	my $publisher = shift;
-	my $object    = Business::ISBN->new($isbn);
 
-	unless( $object->is_valid )
-		{
+	my $object = _get_object( $isbn );
+
+	unless( $object->is_valid ) {
 		$Test->diag("ISBN [$isbn] is not valid"),
 		$Test->ok(0);
 		}
-	elsif( $object->publisher_code eq $publisher )
-		{
+	elsif( $object->publisher_code eq $publisher ) {
 		$Test->ok(1);
 		}
-	else
-		{
+	else {
 		$Test->diag("ISBN [$isbn] publisher code is wrong\n",
 			"\tExpected [$publisher]\n",
 			"\tGot [" . $object->publisher_code . "]\n" );
@@ -133,17 +133,22 @@ sub isbn_publisher_ok
 		}
 	}
 
+sub _get_object {
+	my( $arg ) = @_;
+
+	my $object = do {
+		if( eval { $arg->isa( 'Business::ISBN' ) } ) { $arg }
+		else { Business::ISBN->new( $arg ) }
+		};
+	}
+
 =back
 
 =head1 SOURCE AVAILABILITY
 
-This source is part of a SourceForge project which always has the
-latest sources in CVS, as well as all of the previous releases.
+This source is in GitHub:
 
-	http://sourceforge.net/projects/brian-d-foy/
-
-If, for some reason, I disappear from the world, one of the other
-members of the project can shepherd this module appropriately.
+	https://github.com/briandfoy/Test-ISBN
 
 =head1 AUTHOR
 
@@ -151,7 +156,7 @@ brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2002-2007 brian d foy.  All rights reserved.
+Copyright (c) 2002-2014 brian d foy.  All rights reserved.
 
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
