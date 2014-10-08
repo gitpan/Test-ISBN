@@ -4,7 +4,7 @@
       "brian d foy <bdfoy@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.140640",
+   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.132830",
    "license" : [
       "perl_5"
    ],
@@ -19,29 +19,6 @@
          "inc"
       ]
    },
-   "prereqs" : {
-      "build" : {
-         "requires" : {
-            "ExtUtils::MakeMaker" : "0"
-         }
-      },
-      "configure" : {
-         "requires" : {
-            "ExtUtils::MakeMaker" : "0"
-         }
-      },
-      "runtime" : {
-         "requires" : {
-            "Business::ISBN" : "2.0"
-         }
-      },
-      "test" : {
-         "requires" : {
-            "Test::Builder::Tester" : "0",
-            "Test::More" : "0"
-         }
-      }
-   },
    "release_status" : "stable",
    "resources" : {
       "repository" : {
@@ -50,5 +27,5 @@
          "web" : "https://github.com/briandfoy/Test-ISBN"
       }
    },
-   "version" : "2.02"
+   "version" : "2.04"
 }
